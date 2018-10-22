@@ -1,7 +1,7 @@
-<h1>Welcome <%= currentUser.username %> </h1>
+<h1>Welcome <%= user.username %> </h1>
 <h2>My favourites:</h2>
 <ul>
-<% currentUser.myProfessionals.forEach(element => { %>
+<% user.myProfessionals.forEach(element => { %>
   <li><a href="/professional/<%= element._id %>"><%= element.username %> </a></li>
 <% }) %>
 </ul>

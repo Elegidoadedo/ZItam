@@ -14,7 +14,7 @@ const clientSchema = new Schema({
   },
   myProfessionals: [{
     type: ObjectId,
-    ref: 'Profesional'
+    ref: 'Professional'
   }],
   role: String,
 }, {
