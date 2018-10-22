@@ -7,7 +7,7 @@ const saltRounds = 10;
 const middlewares = require('../middlewares/middlewares')
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', middlewares.requireAnon, (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
@@ -63,7 +63,7 @@ router.post('/signup', middlewares.requireAnon, (req, res, next) => {
   .catch(next)
 });
 
-router.get('/login', (req, res, next) => {
+router.get('/login', middlewares.requireAnon, (req, res, next) => {
   res.render('login')
 });
 

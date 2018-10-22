@@ -12,7 +12,7 @@ const clientSchema = new Schema({
     type: String,
     unique: true
   },
-  myProfesionals: [{
+  myProfessionals: [{
     type: ObjectId,
     ref: 'Profesional'
   }],

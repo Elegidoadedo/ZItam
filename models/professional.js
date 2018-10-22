@@ -19,6 +19,10 @@ const professionalSchema = new Schema({
   //ENUM
 
   role: String,
+  code: {
+    type: Number,
+    default: 0000
+  }
 
 }, {
     timestamps: {

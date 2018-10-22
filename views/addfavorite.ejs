@@ -1,0 +1,7 @@
+<h1>Welcome <%= currentUser.username %> </h1>
+<p>introduce a code</p>
+<form action="/clients/<%= currentUser._id%>/favorite" method="post">
+  <label for="">Code:</label>
+  <input type="text" name="code" id="">
+  <input type="submit" value="send">
+</form>
