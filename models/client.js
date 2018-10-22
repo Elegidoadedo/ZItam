@@ -3,9 +3,15 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const clientSchema = new Schema({
-  username: String,
+  username:{
+    type: String,
+    unique: true
+  },
   password: String,
-  email: String,
+  email:{
+    type: String,
+    unique: true
+  },
   myProfesionals: [{
     type: ObjectId,
     ref: 'Profesional'

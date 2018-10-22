@@ -10,9 +10,9 @@ const appointmentSchema = new Schema({
   employee: String,
   date: Date,
   status: String,
-  profesional: {
+  professional: {
     type: ObjectId,
-    ref: 'Profesional'
+    ref: 'Professional'
   },
   client: {
     type: ObjectId,

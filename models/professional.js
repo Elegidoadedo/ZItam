@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const profesionalSchema = new Schema({
+const professionalSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  img: String,
+  image: String,
   description: String,
   employees: [String],
 
@@ -25,6 +25,6 @@ const profesionalSchema = new Schema({
     }
 });
 
-  const Profesional = mongoose.model('Profesional', profesionalSchema);
+  const Professional = mongoose.model('Professional', professionalSchema);
 
-  module.exports = Profesional;
+  module.exports = Professional;

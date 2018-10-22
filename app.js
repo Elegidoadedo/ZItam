@@ -3,14 +3,21 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash')
 
 
 const indexRouter = require('./routes/index');
 const clientsRouter = require('./routes/clients');
-const authRouter = require('./routes/auth')
 const professionalsRouter = require('./routes/professionals')
 const appointmentsRouter = require('./routes/appointments')
+
+mongoose.connect('mongodb://localhost/appointmentApp', {
+  useNewUrlParser: true,
+});
 
 const app = express();
 
@@ -26,8 +33,40 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  secret: 'some-string',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  app.locals.currentUser = req.session.currentUser;
+  res.locals.currentUser = req.session.currentUser;
+  next();
+});
+
+app.use((req, res, next) => {
+
+  // We extract the messages separately cause we call req.flash() we'll clean the object flash.
+  res.locals.errorMessages = req.flash('error');
+  res.locals.infoMessages = req.flash('info');
+  res.locals.dangerMessages = req.flash('danger') ;
+  res.locals.successMessages = req.flash('success');
+  res.locals.warningMessages = req.flash('warning');
+  next();
+});
+
+
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
 app.use('/clients', clientsRouter);
 app.use('/professionals', professionalsRouter);
 app.use('/appointments', appointmentsRouter);
