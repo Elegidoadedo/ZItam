@@ -15,7 +15,8 @@ const clientSchema = new Schema({
   myProfesionals: [{
     type: ObjectId,
     ref: 'Profesional'
-  }]
+  }],
+  role: String,
 }, {
     timestamps: {
       createdAt: "created_at",

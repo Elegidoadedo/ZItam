@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const Client = require('../models/client')
 const Professional = require('../models/professional')
 const saltRounds = 10;
+const middlewares = require('../middlewares/middlewares')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -15,7 +16,7 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
-  const {username, password, email, user} = req.body
+  const {username, password, email, role} = req.body;
   let collection;
 
   if ( !username || !password || !email ) {
@@ -23,7 +24,7 @@ router.post('/signup', (req, res, next) => {
     return res.redirect('/signup')
   }
 
-  if(user === "client"){
+  if(role === "client"){
     collection = Client
   } else {
     collection = Professional
@@ -47,7 +48,7 @@ router.post('/signup', (req, res, next) => {
     const salt  = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
-    const newUser = new collection({ username, password: hashedPassword, email });
+    const newUser = new collection({ username, password: hashedPassword, email, role});
 
     newUser.save()
     .then(result => {
@@ -67,7 +68,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  const { username, password, user } = req.body;
+  const { username, password, role } = req.body;
   console.log(req.body)
   let collection;
   if ( !username || !password ) {
@@ -75,7 +76,7 @@ router.post('/login', (req, res, next) => {
     return res.redirect('/login');
   }
   
-  if(user === "client"){
+  if(role === "client"){
     collection = Client
   } else {
     collection = Professional

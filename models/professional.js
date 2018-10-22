@@ -14,9 +14,11 @@ const professionalSchema = new Schema({
   service:[{
     name: String,
     duration: Number,
-  }]
+  }],
 
   //ENUM
+
+  role: String,
 
 }, {
     timestamps: {
