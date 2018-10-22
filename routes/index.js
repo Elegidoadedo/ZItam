@@ -5,6 +5,7 @@ const Client = require('../models/client')
 const Professional = require('../models/professional')
 const saltRounds = 10;
 const middlewares = require('../middlewares/middlewares')
+const mongoose = require('mongoose')
 
 /* GET home page. */
 router.get('/', middlewares.requireAnon, (req, res, next) => {
@@ -47,7 +48,7 @@ router.post('/signup', middlewares.requireAnon, (req, res, next) => {
 
     const salt  = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
-
+    mongoose.conection.close();
     const newUser = new collection({ username, password: hashedPassword, email, role});
 
     newUser.save()
