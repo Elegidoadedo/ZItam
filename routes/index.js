@@ -11,11 +11,11 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/signup', (req, res, next) => {
+router.get('/signup', middlewares.requireAnon, (req, res, next) => {
   res.render('signup')
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', middlewares.requireAnon, (req, res, next) => {
   const {username, password, email, role} = req.body;
   let collection;
 
@@ -55,7 +55,7 @@ router.post('/signup', (req, res, next) => {
       // guardamos el usuario en la session
       req.session.currentUser = newUser;
       // redirect siempre com barra
-      res.redirect(`/${newUser._id}/profile`);
+      res.redirect(`/profile/${newUser._id}`);
     })
     .catch(next)
     
@@ -67,7 +67,7 @@ router.get('/login', (req, res, next) => {
   res.render('login')
 });
 
-router.post('/login', (req, res, next) => {
+router.post('/login', middlewares.requireAnon, (req, res, next) => {
   const { username, password, role } = req.body;
   console.log(req.body)
   let collection;
@@ -93,7 +93,7 @@ router.post('/login', (req, res, next) => {
       // Success
       // Adding user in session
       req.session.currentUser = user;
-      res.redirect(`/${user._id}/profile`);
+      res.redirect(`/profile/${user._id}`);
     } else {
       // No, no, no, no, prohibido
       req.flash('error', 'Username or password are incorrect');
@@ -104,7 +104,7 @@ router.post('/login', (req, res, next) => {
 })
 
 
-router.post('/logout', (req, res, next) => {
+router.post('/logout', middlewares.requireUser, (req, res, next) => {
   req.session.destroy((err) => next(err));
   res.redirect('/');
 });
