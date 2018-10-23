@@ -1,0 +1,14 @@
+<% if (currentUser.role === "professional"){ %>
+<nav>
+<a href="/profile/<%= user._id %>">Profile</a>
+<a href="/profile/<%= user._id %>/edit">Edit info</a>
+<a href="/logout">Log out</a>
+</nav>
+<% } else if ( currentUser.role === "client"){ %>
+<nav>
+  <a href="/profile/<%= user._id %>">Profile </a>
+  <a href="/profile/<%= user._id %>/favorite">My fav. Stores </a>
+  <a href="/profile/<%= user._id %>/add">Add a Store </a>
+  <a href="/logout">Log out</a>
+</nav>
+<% } %>
