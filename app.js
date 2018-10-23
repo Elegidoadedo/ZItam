@@ -88,7 +88,7 @@ app.use((err, req, res, next) => {
 
   // only render if the error ocurred before sending the response
   if (!res.headersSent) {
-    console.log(err)
+    // console.log(err)
     res.status(500);
     res.render('error500');
   }
