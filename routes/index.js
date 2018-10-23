@@ -54,7 +54,7 @@ router.post('/signup', middlewares.requireAnon, (req, res, next) => {
       // guardamos el usuario en la session
       req.session.currentUser = newUser;
       // redirect siempre com barra
-      res.redirect(`/profile/${newUser._id}`);
+      res.redirect(`/profile`);
     })
     .catch(next)
     
@@ -92,7 +92,7 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
       // Success
       // Adding user in session
       req.session.currentUser = user;
-      res.redirect(`/profile/${user._id}`);
+      res.redirect(`/profile`);
     } else {
       // No, no, no, no, prohibido
       req.flash('error', 'Username or password are incorrect');

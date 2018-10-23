@@ -8,9 +8,9 @@
 </nav>
 <% } else if ( currentUser.role === "client"){ %>
 <nav>
-  <a href="/profile/<%= currentUser._id %>">Profile </a>
-  <a href="/profile/<%= currentUser._id %>/favorite">My fav. Stores </a>
-  <a href="/profile/<%= currentUser._id %>/add">Add a Store </a>
+  <a href="/profile">Profile </a>
+  <a href="/clients/my-favorites">My fav. Stores </a>
+  <a href="/clients/add-favorite">Add a Store </a>
   <form action="/logout" method="post">
     <input type="submit" value="Log out">
   </form>

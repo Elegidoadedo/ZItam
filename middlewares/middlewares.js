@@ -13,7 +13,7 @@ function requireAnon(req, res, next) {
   const user = req.session.currentUser;
 
   if (user) {
-    return res.redirect(`/profile/${user._id}`)
+    return res.redirect(`/profile`)
   } else {
     next();
   }
