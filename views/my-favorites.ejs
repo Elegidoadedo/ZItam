@@ -2,6 +2,6 @@
 <h2>My favourites:</h2>
 <ul>
 <% user.myProfessionals.forEach(element => { %>
-  <li><a href="/professional/<%= element._id %>"><%= element.username %> </a></li>
+  <li><a href="/professionals/<%= element._id %>"><%= element.username %> </a></li>
 <% }) %>
 </ul>

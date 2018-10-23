@@ -1,6 +1,6 @@
 <% if (currentUser.role === "professional"){ %>
 <nav>
-<a href="/profile/<%= currentUser._id %>">Profile</a>
+<a href="/profile">Profile</a>
 <a href="/profile/<%= currentUser._id %>/edit">Edit info</a>
 <form action="/logout" method="post">
   <input type="submit" value="Log out">

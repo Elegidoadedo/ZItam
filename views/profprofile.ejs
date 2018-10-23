@@ -9,6 +9,25 @@
 </ul>
 
 <h2> Make an appointment:</h2>
+<ul>
+<% professional.timeBlock.forEach(element => { %>
+  <li><%= element.hour %>:<%= element.min %>  </li> 
+<% }) %>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <form action="" method="POST">
   <label for="date" name ="day">Choose a day:</label>

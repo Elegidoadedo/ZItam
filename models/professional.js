@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const professionalSchema = new Schema({
   username: String,
@@ -15,8 +16,11 @@ const professionalSchema = new Schema({
     name: String,
     duration: Number,
   }],
-
-  //ENUM
+  
+  timeBlock: [{
+    type: ObjectId,
+    ref: 'Date'
+  }],
 
   role: String,
   code: {
