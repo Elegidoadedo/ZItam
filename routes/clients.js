@@ -6,11 +6,11 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
 /* GET users listing. */
-router.get('/:id/favorite', (req, res, next) => {
+router.get('/add-favorite', (req, res, next) => {
   res.render('addfavorite')
 });
 
-router.post('/:id/favorite', (req, res, next) => {
+router.post('/add-favorite', (req, res, next) => {
   const id = req.params.id
   const {code} = req.body
   Client.findById(id)

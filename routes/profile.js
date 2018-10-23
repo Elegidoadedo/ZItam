@@ -3,7 +3,7 @@ const router = express.Router();
 const middlewares = require('../middlewares/middlewares')
 
 /* GET users listing. */
-router.get('/:id', middlewares.requireUser , (req, res, next) => {
+router.get('/', middlewares.requireUser , (req, res, next) => {
   res.render('profile')
 })
 
