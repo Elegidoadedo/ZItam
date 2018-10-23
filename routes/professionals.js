@@ -8,7 +8,7 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id
 
   Professional.findById(id)
-  .populate('timeBlock')
+  .populate('timeBlock.date')
   .then(professional => {
     res.render('profprofile',{professional})
   })

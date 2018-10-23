@@ -12,7 +12,6 @@ const appointmentSchema = new Schema({
     type: ObjectId,
     ref: 'Date'
   },
-  status: String,
   professional: {
     type: ObjectId,
     ref: 'Professional'

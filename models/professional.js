@@ -18,8 +18,14 @@ const professionalSchema = new Schema({
   }],
   
   timeBlock: [{
+    date:{
     type: ObjectId,
-    ref: 'Date'
+    ref: 'Date',
+    },
+    status: {
+      type: String,
+      default: "free"
+    }
   }],
 
   role: String,
