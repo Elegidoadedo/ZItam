@@ -14,6 +14,7 @@ const indexRouter = require('./routes/index');
 const clientsRouter = require('./routes/clients');
 const professionalsRouter = require('./routes/professionals')
 const appointmentsRouter = require('./routes/appointments')
+const profileRouter = require('./routes/profile')
 
 mongoose.connect('mongodb://localhost/appointmentApp', {
   useNewUrlParser: true,
@@ -70,6 +71,7 @@ app.use('/', indexRouter);
 app.use('/clients', clientsRouter);
 app.use('/professionals', professionalsRouter);
 app.use('/appointments', appointmentsRouter);
+app.use('/profile', profileRouter);
 
 
 
