@@ -8,6 +8,7 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash')
+require('dotenv').config();
 
 
 const indexRouter = require('./routes/index');
@@ -16,7 +17,7 @@ const professionalsRouter = require('./routes/professionals')
 const appointmentsRouter = require('./routes/appointments')
 const profileRouter = require('./routes/profile')
 
-mongoose.connect('mongodb://localhost/appointmentApp', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
 });
 
