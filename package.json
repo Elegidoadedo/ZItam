@@ -2,6 +2,10 @@
   "name": "appointmentapp",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "10.11.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
@@ -20,7 +24,7 @@
     "http-errors": "~1.6.2",
     "mongoose": "^5.3.4",
     "morgan": "~1.9.0",
-    "node-pre-gyp": "^0.11.0"
+    "node-gyp": "^3.8.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
