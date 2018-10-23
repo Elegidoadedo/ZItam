@@ -8,7 +8,10 @@ const appointmentSchema = new Schema({
     duration: Number,
   },
   employee: String,
-  date: Date,
+  date: {
+    type: ObjectId,
+    ref: 'Date'
+  },
   status: String,
   professional: {
     type: ObjectId,
