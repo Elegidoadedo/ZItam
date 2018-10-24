@@ -90,6 +90,7 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
 })
 
 
+
 // First stage in the form employee selector
 
 router.get('/:id/:service', (req, res, next) => {
@@ -106,15 +107,32 @@ router.get('/:id/:service', (req, res, next) => {
 });
 
 // Final Step in form, show timeblocking
-router.get('/:id', (req, res, next) => {
+router.get('/:id/:service/:employee', (req, res, next) => {
   const id = req.params.id;
+  const service = req.params.service;
+  const employee = req.params.employee;
 
-  Professional.findById(id)
+  Professional.findOne({id: id, service: service, employee: employee})
   .then(professional => {
-    res.render('profprofile',{professional})
+    res.render('timeblocking',{professional})
   })
   .catch(next)
 
 });
+
+
+
+// landing professional with form
+router.get('/:id/', (req, res, next) => {
+  const id = req.params.id;
+ 
+  Professional.findById(id)
+  .then(professional => {
+    res.render ('profprofile', {professional})
+  })
+  .catch(next)
+
+});
+
 
 module.exports = router;
