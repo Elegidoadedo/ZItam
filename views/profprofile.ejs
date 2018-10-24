@@ -2,16 +2,14 @@
 <img src="<%= professional.image%>" alt="foto del local">
 <p><%= professional.description %></p>
 <h3>SERVICES:</h3>
-<ul>
-  <li>Hair cut</li>
-  <li>Hair cut and dye</li>
-  <li>Hair cut and hairstyle</li>
-</ul>
 
-<h2> Make an appointment:</h2>
-<form action="/appointment" method="post">
-<% professional.timeBlock.forEach(element => { %>
-  <input type="radio" name="" id="" value="" checked><%= element.date.hour %> : <%= element.date.min %>  <br>
-<% }) %>
-</form>
+<h2> MAKE AN APPOINTMENT:</h2>
+<h3> Choose a service:</h3>
+ <form action="`/$(id)/$(service)/employees" method="get">
+ <% professional.services.forEach( service =>{ %>
+ <input type="radio" name="service" value=" <%= service.name %>" > <%= service.name %>
+ <% }) %> 
+ <input type="submit" value="Submit">
+ </form>
+
 

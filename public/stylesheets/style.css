@@ -48,5 +48,13 @@ p {
 .home-link-block{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 5%;
+}
+
+.home-link-block a{ 
+  text-decoration: none;
+  background-color: black;
+  color:white;
+  border-radius: 1px solid 15px;
 }
