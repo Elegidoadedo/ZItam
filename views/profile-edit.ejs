@@ -1,0 +1,47 @@
+<% if (currentUser.role === "professional") { %>
+ 
+<h2>USER: <%= currentUser.username %> </h2>
+
+<form action="/profile/edit" method="post">
+
+
+<label for="">EMAIL</label>
+<input type="email" name="email" value="<%= currentUser.email %>">
+
+<label for="">IMAGE</label>
+<input type="file" name="image" value="<%= currentUser.image %>">
+
+<label for="">DESCRIPTION</label>
+<input type="text" name="description" value="<%= currentUser.description %>">
+
+<input type="submit" value="Submit">
+<h3>SERVICES</h3>
+</form>
+<% currentUser.services.forEach(service => { %>
+  <form action="/profile/delete/services/<%= service.name %>" method="post">
+  <p><%= service.name %> - <%=service.duration  %> </p>
+  <input type="submit" value="delete">
+  </form>
+<% }) %>
+<form action="/profile/add-service" method="post">
+  <label for="">SERVICE NAME</label>
+  <input type="text" name="name">
+  <label for="">DURATION</label>
+  <input type="text" name="duration">
+  <input type="submit" value="add">
+</form>
+<h3>EMPLOYEES</h3>
+<% currentUser.employees.forEach(employee => { %>
+  <form action="/profile/delete/employees/<%= employee.name %>" method="post">
+  <p><%= employee.name %></p>
+  <input type="submit" value="delete">
+  </form>
+<% }) %>
+<form action="/profile/add-employee" method="post">
+  <label for="">EMPLOYEE NAME</label>
+  <input type="text" name="name">
+  <input type="submit" value="add">
+</form>
+
+<% } %>
+<%- include('partials/notification.ejs') %>
