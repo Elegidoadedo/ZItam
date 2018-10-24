@@ -9,9 +9,10 @@
 </ul>
 
 <h2> Make an appointment:</h2>
-<form action="/appointment" method="post">
+<form action="/appointments/<%= professional._id %>" method="post">
 <% professional.timeBlock.forEach(element => { %>
-  <input type="radio" name="" id="" value="" checked><%= element.date.hour %> : <%= element.date.min %>  <br>
+  <input type="radio" name="dateId" id="" value="<%= element.date._id %>" checked><%= element.date.hour %> : <%= element.date.min %><br>
 <% }) %>
+  <input type="submit" value="send">
 </form>
 
