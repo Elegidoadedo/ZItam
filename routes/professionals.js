@@ -90,14 +90,7 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
 })
 
 
-
-
-
-// First stage in the form service selector
-
- 
-
-// Second stage in the form employee selector
+// First stage in the form employee selector
 
 router.get('/:id/:service', (req, res, next) => {
   const id = req.params.id;
