@@ -5,7 +5,7 @@
 
 <h2> MAKE AN APPOINTMENT:</h2>
 <h3> Choose a service:</h3>
- <form action="`/$(id)/$(service)/employees" method="get">
+ <form action=professionals/<% /<%=professional._id %>/<%= service.name %> method="get">
  <% professional.services.forEach( service =>{ %>
  <input type="radio" name="service" value=" <%= service.name %>" > <%= service.name %>
  <% }) %> 

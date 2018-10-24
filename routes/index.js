@@ -16,27 +16,20 @@ router.get('/signup', middlewares.requireAnon, (req, res, next) => {
 });
 
 router.post('/signup', middlewares.requireAnon, (req, res, next) => {
-  const {username, password, email, role} = req.body;
-  let collection;
+  const {username, password, email} = req.body;
 
   if ( !username || !password || !email ) {
     req.flash('error', 'all fields are required')
     return res.redirect('/signup')
   }
 
-  if(role === "client"){
-    collection = Client
-  } else {
-    collection = Professional
-  }
-
-  collection.findOne( {username} )
+  Client.findOne( {username} )
   .then(result => {
     if(result) {
       req.flash('error','username is already exist');
       return res.redirect('/signup');
     }
-    collection.findOne( {email} )
+    Client.findOne( {email} )
     .then(result => {
       if(result) {
         req.flash('error','email is already exist');
@@ -47,13 +40,13 @@ router.post('/signup', middlewares.requireAnon, (req, res, next) => {
 
     const salt  = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    const newUser = new collection({ username, password: hashedPassword, email, role});
+    const newUser = new Client({ username, password: hashedPassword, email, role: "client"});
 
     newUser.save()
     .then(result => {
       // guardamos el usuario en la session
       req.session.currentUser = newUser;
-      // redirect siempre com barra
+      // redirect siempre con barra
       res.redirect(`/profile`);
     })
     .catch(next)
@@ -67,21 +60,15 @@ router.get('/login', middlewares.requireAnon, (req, res, next) => {
 });
 
 router.post('/login', middlewares.requireAnon, (req, res, next) => {
-  const { username, password, role } = req.body;
+  const { username, password} = req.body;
   console.log(req.body)
-  let collection;
+
   if ( !username || !password ) {
     req.flash('error', 'Username or password are incorrect');
     return res.redirect('/login');
   }
   
-  if(role === "client"){
-    collection = Client
-  } else {
-    collection = Professional
-  }
-
-  collection.findOne({username})
+  Client.findOne({username})
   .then(user => {
     if(!user) {
       req.flash('error', 'Username or password are incorrect');

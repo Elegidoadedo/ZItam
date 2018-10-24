@@ -3,35 +3,35 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const professionalSchema = new Schema({
+  role: String,
   username: String,
   password: String,
   email: String,
   image: String,
   description: String,
-  employees: [String],
 
-  //ENUM
-
-  service:[{
+  services:[{
     name: String,
     duration: Number,
   }],
-  
-  timeBlock: [{
-    date:{
-    type: ObjectId,
-    ref: 'Date',
-    },
-    status: {
-      type: String,
-      default: "free"
-    }
+
+  employees: [{
+    name: String,
+    timeBlock: [{
+      date:{
+        type: ObjectId,
+        ref: 'Date',
+      },
+      status: {
+        type: String,
+        default: "free"
+      }
+    }] 
   }],
 
-  role: String,
   code: {
     type: Number,
-    default: 0000
+    default: 0
   }
 
 }, {
