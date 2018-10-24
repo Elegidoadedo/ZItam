@@ -11,7 +11,7 @@ router.get('/add-favorite', (req, res, next) => {
 });
 
 router.post('/add-favorite', (req, res, next) => {
-  const id = req.session.currentUser._id;
+ const id = req.session.currentUser._id; 
   const {code} = req.body
   Client.findById(id)
   .then(client => {
