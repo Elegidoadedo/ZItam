@@ -92,49 +92,36 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
 
 
 
-router.get('/:id', (req, res, next) => {
-  const id = req.params.id;
 
-  Professional.findById(id)
-  .populate('timeBlock.date')
-  .then(professional => {
-    res.render('profprofile',{professional})
-  })
-  .catch(next)
-
-});
 // First stage in the form service selector
 
-router.get('/:id', (req, res, next) => {
-  const id = req.params.id;
-  const service = req.params.service;
-
-  Professional.find({id, service})
-  .populate('timeBlock.date')
-  .then(professional => {
-    res.render (`/$(id)/$(service)/employees`, {professional})
-  })
-  .catch(next)
-
-});
  
 
 // Second stage in the form employee selector
-router.get(`/$(id)/$(service)/employees`, (req, res, next) => {
+
+router.get('/:id/:service', (req, res, next) => {
   const id = req.params.id;
   const service = req.params.service;
-  const employee = req.params.employee;
 
-  Professional.find({id, service, employee})
-  .populate('timeBlock.date')
+ 
+  Professional.findById(id)
   .then(professional => {
-    res.render (`/$(id)/$(service)/employees/timeblock`, {professional})
+    res.render ('employees', {professional, service: service})
   })
   .catch(next)
 
 });
 
 // Final Step in form, show timeblocking
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
 
+  Professional.findById(id)
+  .then(professional => {
+    res.render('profprofile',{professional})
+  })
+  .catch(next)
+
+});
 
 module.exports = router;
