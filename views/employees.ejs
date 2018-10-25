@@ -1,11 +1,4 @@
-<h2><%=professional.username%></h2>
-<p>serviceChoosen</p>
+<% professional.employees.forEach((employee)=>{ %>
+<a href="<%=professional._id%>/<%= service%>/<%=employee.name%>"><%= employee.name %></a>
+<%})%>
 
-<h2>Please, choose an employee</h2>
-<form action="" method="get">
-<% professional.employees.forEach( element =>{ %>
-<input type="radio" name="service" value=" <%= element %>" > <%= element %>
-
-<% }) %>
-<input type="submit" value="Submit">
-</form>
