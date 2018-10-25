@@ -27,7 +27,7 @@ router.post('/edit', middlewares.requireUser , (req, res, next) => {
   Professional.findByIdAndUpdate(id, {$set :{email: email, image:image, description:description}},{new : true})
   .then(professional => {
     req.session.currentUser = professional;
-    res.redirect('/profile')
+    res.redirect('/profile/edit')
   })
   .catch(next)
 })
@@ -46,7 +46,7 @@ router.post('/delete/services/:service',(req, res, next) => {
     professional.save()
     .then(result => {
       req.session.currentUser = result;
-      res.redirect('/profile')
+      res.redirect('/profile/edit')
     })
     .catch(next)
   })
@@ -63,7 +63,7 @@ router.post('/add-service',(req, res, next) => {
     .then(succes => {
       req.flash('info', 'Añadido correctamente');
       req.session.currentUser = succes;
-      res.redirect('/profile');
+      res.redirect('/profile/edit');
     })
     .catch(next)
 
@@ -86,7 +86,7 @@ router.post('/delete/employees/:employee',(req, res, next) => {
     professional.save()
     .then(result => {
       req.session.currentUser = result;
-      res.redirect('/profile')
+      res.redirect('/profile/edit')
     })
     .catch(next)
   })
@@ -112,7 +112,7 @@ router.post('/add-employee',(req, res, next) => {
       .then(succes => {
         req.flash('info', 'Añadido correctamente');
         req.session.currentUser = succes;
-        res.redirect('/profile');
+        res.redirect('/profile/edit');
       })
       .catch(next)
   
