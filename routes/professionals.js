@@ -20,20 +20,20 @@ router.post('/signup', middlewares.requireAnon, (req, res, next) => {
 
   if ( !username || !password || !email ) {
     req.flash('error', 'all fields are required')
-    return res.redirect('/signup')
+    return res.redirect('/professionals/signup')
   }
 
   Professional.findOne( {username} )
   .then(result => {
     if(result) {
       req.flash('error','username is already exist');
-      return res.redirect('/signup');
+      return res.redirect('/professionals/signup');
     }
     Professional.findOne( {email} )
     .then(result => {
       if(result) {
         req.flash('error','email is already exist');
-        return res.redirect('/signup');
+        return res.redirect('/professionals/signup');
       }
     })
     .catch(next)
@@ -65,14 +65,14 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
 
   if ( !username || !password ) {
     req.flash('error', 'Username or password are incorrect');
-    return res.redirect('/login');
+    return res.redirect('/professionals/login');
   }
   
   Professional.findOne({username})
   .then(user => {
     if(!user) {
       req.flash('error', 'Username or password are incorrect');
-      return res.redirect('/login');
+      return res.redirect('/professionals/login');
     }
 
     if (bcrypt.compareSync(password /* provided password */, user.password/* hashed password */)) {
@@ -83,7 +83,7 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
     } else {
       // No, no, no, no, prohibido
       req.flash('error', 'Username or password are incorrect');
-      res.redirect('/login');
+      res.redirect('/professionals/login');
     }
   })
   .catch(next)
