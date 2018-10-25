@@ -102,9 +102,10 @@ router.post('/delete/employees/:employee',(req, res, next) => {
 router.post('/add-employee',(req, res, next) => {
   const {name}= req.body
   const id = req.session.currentUser._id;
-  let timeBlock = []
-  DateModel.find()
+  let timeBlock = [];
+  DateModel.find({year: 2018})
   .then(dates => {
+    console.log(dates)
     dates.forEach(date => {
       dateId = date._id
       timeBlock.push(ObjectId(dateId))
