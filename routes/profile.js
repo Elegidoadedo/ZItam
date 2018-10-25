@@ -8,11 +8,11 @@ const ObjectId = mongoose.Types.ObjectId;
 
 /* GET users listing. */
 router.get('/', middlewares.requireUser , (req, res, next) => {
-  const date = new Date()
-  var day = date.getUTCDate();
-  var month = date.getUTCMonth() + 1;
-  Date2.find({month: month,day: date})
-  console.log(day,month)
+  // const date = new Date()
+  // var day = date.getUTCDate();
+  // var month = date.getUTCMonth() + 1;
+  // Date2.find({month: month,day: date})
+  // console.log(day,month)
   res.render('profile')
 })
 
@@ -108,7 +108,7 @@ router.post('/add-employee',(req, res, next) => {
     console.log(dates)
     dates.forEach(date => {
       dateId = date._id
-      timeBlock.push(ObjectId(dateId))
+      timeBlock.push({date: ObjectId(dateId)})
     })
     Professional.findById(id)
     .then(professional => {

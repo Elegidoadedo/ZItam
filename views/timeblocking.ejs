@@ -1,6 +1,15 @@
 
 
 Free Time-blocking for:
-
-
-<%= professional %> 
+ 
+  <form action="/appointments/<%=idprof %>/<%= service %>/<%= employee %>" method="post">
+<% timeblock.forEach( item =>{ %>
+<% if( item.status === "free"){ %>
+  <input type="radio" name="dateId"  value="<%= item.date._id%>"><%= item.date.hour%>: <% if(item.date.min === 0){ %>
+    0<%= item.date.min %>
+ <% } else{ %>
+   <%= item.date.min%>
+   <% } %>
+<%} }) %>
+<input type="submit" value="Submit hour">
+</form>

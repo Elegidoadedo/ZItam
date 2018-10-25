@@ -111,14 +111,24 @@ router.get('/:id/:service/:employee', (req, res, next) => {
   const id = req.params.id;
   const service = req.params.service;
   const employee = req.params.employee;
+  let timeblock =[];
 
-  Professional.findOne({id: id, service: service, employee: employee})
+  Professional.findById(id)
+  .populate('employees.timeBlock.date')
   .then(professional => {
-    res.render('timeblocking',{professional})
+    professional.employees.forEach(emp =>{
+      if( emp.name === employee){
+       timeblock = emp.timeBlock
+          
+      
+      }
+    })
+    res.render('timeblocking',{timeblock, service:service, employee:employee, idprof:id})
   })
   .catch(next)
 
 });
+
 
 
 
