@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Date = require('../models/date')
+const DateModel = require('../models/dateModel')
 const Appointment = require('../models/appointment')
 const Professional = require('../models/professional')
 const Client = require('../models/client')

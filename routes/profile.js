@@ -2,12 +2,17 @@ const express = require('express');
 const router = express.Router();
 const middlewares = require('../middlewares/middlewares')
 const Professional = require('../models/professional')
-const Date = require('../models/date')
+const DateModel = require('../models/dateModel')
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
 /* GET users listing. */
 router.get('/', middlewares.requireUser , (req, res, next) => {
+  const date = new Date()
+  var day = date.getUTCDate();
+  var month = date.getUTCMonth() + 1;
+  Date2.find({month: month,day: date})
+  console.log(day,month)
   res.render('profile')
 })
 
@@ -98,7 +103,7 @@ router.post('/add-employee',(req, res, next) => {
   const {name}= req.body
   const id = req.session.currentUser._id;
   let timeBlock = []
-  Date.find()
+  DateModel.find()
   .then(dates => {
     dates.forEach(date => {
       dateId = date._id
