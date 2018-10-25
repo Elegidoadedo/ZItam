@@ -105,7 +105,6 @@ router.post('/add-employee',(req, res, next) => {
   let timeBlock = [];
   DateModel.find({year: 2018})
   .then(dates => {
-    console.log(dates)
     dates.forEach(date => {
       dateId = date._id
       timeBlock.push({date: ObjectId(dateId)})

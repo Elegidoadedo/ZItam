@@ -16,7 +16,7 @@ router.post('/:id/:service/:employee', (req, res, next) => {
   const ClientId = req.session.currentUser._id;
   const {dateId} = req.body
   const professionalId = req.params.id
-  const service = req.params.service
+  let service = req.params.service
   const employee = req.params.employee
   
   Professional.findById(professionalId)
@@ -29,7 +29,8 @@ router.post('/:id/:service/:employee', (req, res, next) => {
     professional.employees.forEach(item => {
       if(item.name === employee){
         item.timeBlock.forEach(b => {
-          if(b.date === dateId){
+          const idx = b.date.toString()
+          if(idx === dateId){
             b.status = "block"
           }
         })
@@ -49,8 +50,5 @@ router.post('/:id/:service/:employee', (req, res, next) => {
   })
   .catch(next)
   
-
-
-
 });
 module.exports = router;
