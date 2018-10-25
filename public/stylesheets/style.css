@@ -10,19 +10,22 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: slategrey;
 }
 
 
 /* ---- typography ---- */
 
 body {
-  color: #111;
-  font-family: Helvetica, Arial, sans-serif;
+  color: rgb(233, 218, 218);
+  font-family: Roboto, Arial, sans-serif;
   font-size: 16px;
   line-height: 147%;
 }
 
-h1 {}
+h1 {
+
+}
 
 h2 {}
 
@@ -30,6 +33,7 @@ h3 {}
 
 p {
   margin: 0;
+  font-size: 1.1em;
 }
 
 /* ---- Home-Page --- */
@@ -40,6 +44,12 @@ p {
   align-items: center;
   margin: 20% 0;
 }
+
+.logo{
+  font-family: 'Charmonman', cursive;
+  font-size: 76px;
+}
+
 .home-logo-block img{
   width: 50%;
   height: auto;
@@ -48,13 +58,39 @@ p {
 .home-link-block{
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   margin: 0 5%;
+  margin-bottom: 15%;
+  font-family: 'Arbutus Slab', serif;  
 }
 
-.home-link-block a{ 
+.button-primary{ 
+  border-radius: 15px;
   text-decoration: none;
-  background-color: black;
-  color:white;
-  border-radius: 1px solid 15px;
+  background-color: #9193d0;
+  color: black;
+  border: 2px solid white;
+  padding: 3% 5%;
 }
+
+/* --- SIGN UP CLIENT FORM VIEW --- */
+
+.primary-form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 5% 10%;
+  font-family: 'Arbutus Slab', serif; 
+
+}
+/* --- LOG IN CLIENT VIEW --- */
+.primary-form label , input{
+  margin-bottom: 10%;
+  font-size: 1.3em;
+}
+.center-view{
+  margin-top: 50%;
+}
+
+/* --- SIGN --- */
