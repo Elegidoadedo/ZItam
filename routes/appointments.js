@@ -12,17 +12,45 @@ router.get('/', (req, res, next) => {
   res.send('respond with a resource');
 });
 
-router.post('/:id', (req, res, next) => {
+router.post('/:id/:service/:employee', (req, res, next) => {
   const ClientId = req.session.currentUser._id;
   const {dateId} = req.body
   const professionalId = req.params.id
-
-  const newAppointment = new Appointment({ professional: ObjectId(professionalId), date: ObjectId(dateId), client: ObjectId(ClientId) })
-
-  newAppointment.save()
+  const service = req.params.service
+  const employee = req.params.employee
+  
+  Professional.findById(professionalId)
+  .then(professional => {
+    professional.services.forEach(item => {
+      if(item.name === service){
+        service = item
+      }
+    })
+    professional.employees.forEach(item => {
+      if(item.name === employee){
+        item.timeBlock.forEach(b => {
+          if(b.date === dateId){
+            b.status = "block"
+          }
+        })
+      }
+    })
+    professional.save()
     .then(result => {
-      res.redirect(`/profile`);
+      const newAppointment = new Appointment({ professional: ObjectId(professionalId), date: ObjectId(dateId), client: ObjectId(ClientId), service, employee })
+    
+      newAppointment.save()
+      .then(result => {
+        res.redirect(`/profile`);
+      })
+      .catch(next)
     })
     .catch(next)
+  })
+  .catch(next)
+  
+
+
+
 });
 module.exports = router;
