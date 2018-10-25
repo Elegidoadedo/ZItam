@@ -20,7 +20,7 @@ const professionalSchema = new Schema({
     timeBlock: [{
       date:{
         type: ObjectId,
-        ref: 'Date',
+        ref: 'DateModel',
       },
       status: {
         type: String,
