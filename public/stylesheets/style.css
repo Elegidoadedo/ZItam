@@ -93,4 +93,46 @@ p {
   margin-top: 50%;
 }
 
-/* --- SIGN --- */
+/* --- NAV BARS --- */
+
+.navbar-client, .navbar-prof{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #34343a;
+  padding: 7%;
+  font-size: 0.9em; 
+}
+ .navbar-client a  {
+  text-decoration: none;
+  color: cornflowerblue;
+  padding: 1%;
+ }
+.navbar-client form, .navbar-prof form{
+ display: inline;
+ color: cornflowerblue;
+}
+.navbar-client form input, .navbar-prof form input{
+  margin: 0;
+  color: cornflowerblue;
+  background-color: #34343a;
+  text-decoration: none;
+  border: none;
+}
+.navbar-prof a {
+  text-decoration: none;
+  color: cornflowerblue;
+  padding: 0 10%;
+}
+
+
+/* --- PROFESSIONAL PROFILE LANDING --- */
+
+.profprofile-info{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.profprofile-info img{
+  width: 60%;
+}

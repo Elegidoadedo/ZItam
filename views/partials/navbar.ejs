@@ -1,5 +1,6 @@
+<div class="navbar-container">
 <% if (currentUser.role === "professional"){ %>
-<nav>
+<nav class="navbar-prof">
 <a href="/profile">Profile</a>
 <a href="/profile/edit">Edit info</a>
 <form action="/logout" method="post">
@@ -7,7 +8,7 @@
 </form>
 </nav>
 <% } else if ( currentUser.role === "client"){ %>
-<nav>
+<nav class="navbar-client">
   <a href="/profile">Profile </a>
   <a href="/clients/my-favorites">My fav. Stores </a>
   <a href="/clients/add-favorite">Add a Store </a>
@@ -16,3 +17,4 @@
   </form>
 </nav>
 <% } %>
+</div>
