@@ -5,15 +5,27 @@ const Professional = require('../models/professional')
 const DateModel = require('../models/dateModel')
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
+const Appointment = require('../models/appointment')
 
 /* GET users listing. */
 router.get('/', middlewares.requireUser , (req, res, next) => {
-  // const date = new Date()
-  // var day = date.getUTCDate();
-  // var month = date.getUTCMonth() + 1;
-  // Date2.find({month: month,day: date})
-  // console.log(day,month)
-  res.render('profile')
+  const currentUser = req.session.currentUser
+  let user = null;
+  if(currentUser.role === "client"){
+    user = {client: currentUser._id}
+  } else if(currentUser.role === "professional"){
+    user = {professional: currentUser._id}
+  }
+  Appointment.find(user)
+  .populate('professional')
+  .populate('date')
+  .populate('client')
+  .then(appointments => {
+    res.render('profile',{appointments})
+    
+  })
+  .catch(next)
+
 })
 
 router.get('/edit', middlewares.requireUser , (req, res, next) => {

@@ -1,5 +1,18 @@
 <h1>Welcome <%= currentUser.username %> </h1>
 
-<p>Esto es la página de perfil</p>
+<h3>My appointments:</h3>
+
+<% appointments.forEach(appointment => { %>
+    <h5>Appointment :</h5>
+    <% if(currentUser.role === 'client'){ %> 
+    <p>Professional: <%= appointment.professional.username %> </p>
+    <% } else if(currentUser.role === 'professional'){ %>
+    <p>Client: <%= appointment.client.username %> </p>
+    <% } %> 
+    <p>Servicio: <%= appointment.service.name %> => duration: <%= appointment.service.duration %>  </p>
+    <p>Empleado: <%= appointment.employee %> </p>
+    <p>Dia: <%= appointment.date.day%> </p>
+    <p>Hora: <%= appointment.date.hour %> : <%= appointment.date.min %></p>
+<% }) %>
 
 <%- include('partials/navbar.ejs') %>
