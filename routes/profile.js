@@ -80,7 +80,7 @@ router.post('/add-service',middlewares.requireUser,(req, res, next) => {
     .then(succes => {
       req.flash('info', 'Añadido correctamente');
       req.session.currentUser = succes;
-      res.redirect('/profile/edit');
+      return res.redirect('/profile/edit');
     })
     .catch(next)
 
@@ -129,7 +129,7 @@ router.post('/add-employee', middlewares.requireUser ,(req, res, next) => {
       .then(succes => {
         req.flash('info', 'Añadido correctamente');
         req.session.currentUser = succes;
-        res.redirect('/profile/edit');
+        return res.redirect('/profile/edit');
       })
       .catch(next)
   

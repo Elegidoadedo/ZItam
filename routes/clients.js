@@ -20,14 +20,14 @@ router.post('/add-favorite', (req, res, next) => {
     .then(professional => {
       if(!professional){
         req.flash('error', 'El profesional no existe')
-        res.redirect('/clients/add-favorite')
+        return res.redirect('/clients/add-favorite')
       }
       professionalId = professional._id
 
       client.myProfessionals.forEach(item => {
         if(professionalId.toString() === item._id.toString()){
           req.flash('error', 'Ya tienes añadido este profesional')
-          res.redirect('/clients/add-favorite')
+          return res.redirect('/clients/add-favorite')
         }
       })
 
@@ -35,7 +35,7 @@ router.post('/add-favorite', (req, res, next) => {
       client.save()
       .then(succes => {
         req.flash('info', 'Añadido correctamente');
-        res.redirect('/clients/my-favorites');
+        return res.redirect('/clients/my-favorites');
       })
       .catch(next)
     })

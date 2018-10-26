@@ -83,7 +83,7 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
     } else {
       // No, no, no, no, prohibido
       req.flash('error', 'Username or password are incorrect');
-      res.redirect('/login');
+      return res.redirect('/login');
     }
   })
   .catch(next)

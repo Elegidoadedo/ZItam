@@ -24,12 +24,17 @@ router.post('/:id/:service/:employee', middlewares.requireUser, (req, res, next)
 
   if(!dateId){
     req.flash('error', 'Seleccione hora')
-    res.redirect(`/professionals/${professionalId}/${service}/${employee}`)
+    return res.redirect(`/professionals/${professionalId}/${service}/${employee}`)
   }
 
   if(currentUser.role === "client"){
     name =  ObjectId(ClientId)
-  } 
+  } else if(currentUser.role === "professional"){
+    if(!nameClient){
+      req.flash('error', 'Introduzca un nombre')
+      return res.redirect(`/professionals/${professionalId}/${service}/${employee}`)
+    }
+  }
 
   Professional.findById(professionalId)
   .then(professional => {
