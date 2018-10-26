@@ -18,7 +18,19 @@ router.post('/add-favorite', (req, res, next) => {
   .then(client => {
     Professional.findOne({code})
     .then(professional => {
+      if(!professional){
+        req.flash('error', 'El profesional no existe')
+        res.redirect('/clients/add-favorite')
+      }
       professionalId = professional._id
+
+      client.myProfessionals.forEach(item => {
+        if(professionalId.toString() === item._id.toString()){
+          req.flash('error', 'Ya tienes añadido este profesional')
+          res.redirect('/clients/add-favorite')
+        }
+      })
+
       client.myProfessionals.push(ObjectId(professionalId))
       client.save()
       .then(succes => {

@@ -13,6 +13,9 @@
     <p>Empleado: <%= appointment.employee %> </p>
     <p>Dia: <%= appointment.date.day%> </p>
     <p>Hora: <%= appointment.date.hour %> : <%= appointment.date.min %></p>
+    <form action="/appointments/delete/<%= appointment._id %>" method="post">
+        <input type="submit" value="delete">
+    </form>
 <% }) %>
 
 <%- include('partials/navbar.ejs') %>
