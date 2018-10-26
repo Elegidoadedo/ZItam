@@ -1,14 +1,11 @@
 <div class="profprofile-info">
-<h2>Profile of:   <%=professional.username%></h2>
+<h2 class="orange">   <%=professional.username%></h2>
 <img src="<%= professional.image %>" alt="foto del local">
 <p> About us:</p>
 <p><%= professional.description %></p>
 </div>
-<h3>SERVICES:</h3>
-
-<h2> MAKE AN APPOINTMENT:</h2>
-<h3> Choose a service:</h3>
-
+<h2> Want to do an appointment?
+<h2>Choose a service:</h2>
 
  <% professional.services.forEach( service =>{ %>
  <a href="<%= professional._id%>/<%= service.name %>"><%= service.name %></a>

@@ -90,7 +90,7 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
 })
 
 
-router.post('/logout', middlewares.requireUser, (req, res, next) => {
+router.get('/logout', middlewares.requireUser, (req, res, next) => {
   req.session.destroy((err) => next(err));
   res.redirect('/');
 });

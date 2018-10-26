@@ -1,48 +1,47 @@
+<div class= "view-navbar">
+<%- include('partials/notification.ejs') %>
 <% if (currentUser.role === "professional") { %>
  
-<h2>USER: <%= currentUser.username %> </h2>
-
-<form action="/profile/edit" method="post">
-
-
-<label for="">EMAIL</label>
-<input type="email" name="email" value="<%= currentUser.email %>">
-
-<label for="">IMAGE</label>
-<input type="text" name="image" value="<%= currentUser.image %>">
-
-<label for="">DESCRIPTION</label>
-<input type="text" name="description" value="<%= currentUser.description %>">
-
-<input type="submit" value="Submit">
-<h3>SERVICES</h3>
+<form class="edit-form first-edit" action="/profile/edit" method="post">
+  <p class="page-title">Edit the info of: <%= currentUser.username %> </p>
+  <label for="">EMAIL</label>
+  <input type="email" name="email" value="<%= currentUser.email %>">
+  <label for="">IMAGE</label>
+  <input type="text" name="image" value="<%= currentUser.image %>">
+  <label for="">DESCRIPTION</label>
+  <input type="text" name="description" value="<%= currentUser.description %>">
+  <button class="button-primary" type="submit">Change your info</button>
 </form>
-<% currentUser.services.forEach(service => { %>
-  <form action="/profile/delete/services/<%= service.name %>" method="post">
-  <p><%= service.name %> - <%=service.duration  %> </p>
-  <input type="submit" value="delete">
+<div class="second-edit">
+  <h3>Active Services:</h3>
+  <% currentUser.services.forEach(service => { %>
+    <form class="edit-form" action="/profile/delete/services/<%= service.name %>" method="post">
+      <p><%= service.name %> -Duration: <%=service.duration  %> </p>
+      <button class="button-delete edit" type="submit">Delete</button>
+    </form>
+  <% }) %>
+  <form class="edit-form" action="/profile/add-service" method="post">
+    <label for="">SERVICE NAME</label>
+    <input type="text" name="name">
+    <label for="">DURATION</label>
+    <input type="text" name="duration">
+    <button class="button-add edit" type="submit">Add Service</button>
   </form>
-<% }) %>
-<form action="/profile/add-service" method="post">
-  <label for="">SERVICE NAME</label>
-  <input type="text" name="name">
-  <label for="">DURATION</label>
-  <input type="text" name="duration">
-  <input type="submit" value="add">
-</form>
-<h3>EMPLOYEES</h3>
+</div>
+<h3>Active Employees:</h3>
 <% currentUser.employees.forEach(employee => { %>
-  <form action="/profile/delete/employees/<%= employee.name %>" method="post">
+  <form class="edit-form" action="/profile/delete/employees/<%= employee.name %>" method="post">
   <p><%= employee.name %></p>
-  <input type="submit" value="delete">
+  <button class="button-delete edit" type="submit">Delete</button>
   </form>
 <% }) %>
-<form action="/profile/add-employee" method="post">
+<form class="edit-form" action="/profile/add-employee" method="post">
   <label for="">EMPLOYEE NAME</label>
   <input type="text" name="name">
-  <input type="submit" value="add">
+  <button class="button-add edit" type="submit">Add employee</button>
 </form>
 
 <% } %>
-<%- include('partials/notification.ejs') %>
+
 <%- include('partials/navbar.ejs') %>
+</div>

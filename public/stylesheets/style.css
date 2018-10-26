@@ -55,6 +55,10 @@ p {
   font-size: 1.1em;
 }
 
+.view-navbar{
+  margin-bottom: 127px;
+}
+
 /* ---- Home-Page --- */
 
 .home-logo-block{
@@ -94,6 +98,33 @@ p {
   font-size: 1.2em;
 }
 
+
+.button-delete{ 
+  border-radius: 15px;
+  text-decoration: none;
+  background-color: rgb(245, 0, 0);
+  color: white;
+  border: 2px solid white;
+  padding: 0 4%;
+  font-size: 1.2em;
+  width:30%;
+}
+
+.button-add{ 
+  border-radius: 15px;
+  text-decoration: none;
+  background-color: rgb(103, 212, 0);
+  color: white;
+  border: 2px solid white;
+  padding: 0 4%;
+  font-size: 1.1em;
+  width:55%;
+}
+
+.button-delete.edit, .button-add.edit{
+  margin-bottom: 15px;
+}
+
 .home-link-block .button-primary{ 
   padding: 3% 5%;
   font-size: 1em;
@@ -110,15 +141,38 @@ p {
   height: 70vh;
   justify-content: center;
 }
+
+.primary-form.small{
+  height: 50vh;
+}
+
 .primary-form.large{
   height: 85vh;
 }
+
+.edit-form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 0 10%;
+  font-family: 'Arbutus Slab', serif; 
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.first-edit{
+  height: 90vh;
+}
+.second-edit{
+  height: 60vh;
+}
+
 /* --- LOG IN CLIENT VIEW --- */
-.primary-form label{
+.primary-form label,.edit-form label {
   margin-bottom: 3%;
   font-size: 1em;
 }
-.primary-form input{
+.primary-form input, .edit-form input{
   margin-bottom: 15px;
   font-size: 1em;
   height: 40px;
@@ -149,8 +203,9 @@ p {
 
 .navbar-prof a {
   text-decoration: none;
-  color: cornflowerblue;
-  padding: 0 10%;
+  padding: 1% 28px;
+  font-size: 2em;
+  color: #F6AE2D;
 }
 
 
@@ -160,17 +215,23 @@ p {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 .profprofile-info img{
-  width: 60%;
+  width: 80%;
 }
 
+.orange{
+  color:  #F6AE2D;
+}
 
 /* --- FAVORITE LIST --- */
 
 .favorites-list{
   list-style: none;
   padding-left: 0;
+  margin-bottom: 127px;;
 }
 .favorites-list li{
   background-color: #34343a;
@@ -181,4 +242,7 @@ p {
   border: 1px solid #F6AE2D;
   margin-bottom: 10px;
   font-size: 20px;
+}
+.favorites-list a{
+  text-transform: capitalize;
 }

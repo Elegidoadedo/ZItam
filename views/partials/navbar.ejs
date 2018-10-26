@@ -1,12 +1,10 @@
 <div class="navbar-container">
 <% if (currentUser.role === "professional"){ %>
 <nav class="navbar-prof">
-<a href="/profile">Profile</a>
-<a href="/profile/edit">Edit info</a>
-<form action="/logout" method="post">
-  <input type="submit" value="Log out">
-</form>
-</nav>
+<a href="/profile"><i class="far fa-user"></i></a>
+<a href="/profile/edit"><i class="fas fa-user-edit"></i></a>
+<a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+
 <% } else if ( currentUser.role === "client"){ %>
 <nav class="navbar-client">
 

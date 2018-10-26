@@ -1,12 +1,7 @@
-<div class="addfav-header"></div>
-<h1>Welcome <%= currentUser.username %> </h1>
-<p>ENTER THE STORE CODE</p>
-</div>
-<form class="primary-form" action="/clients/add-favorite" method="post">
-  <label for="">Code:</label>
+<h1 class="page-title">Welcome <%= currentUser.username %> </h1>
+<form class="primary-form small" action="/clients/add-favorite" method="post">
+  <label for="">ENTER THE STORE CODE:</label>
   <input type="text" name="code" id="">
-  <input type="submit" value="send">
+  <button class="button-primary" type="submit">Add a Store !</button>
 </form>
-<div class="container">
   <%- include('partials/navbar.ejs') %>
-</div>

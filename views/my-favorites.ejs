@@ -1,5 +1,5 @@
 <h1 class="page-title">Welcome <%= user.username %> </h1>
-<h2>My favorites:</h2>
+<h2>My Stores:</h2>
 <ul class="favorites-list">
 <% user.myProfessionals.forEach(element => { %>
   <li><a href="/professionals/<%= element._id %>"><%= element.username %> </a></li>
