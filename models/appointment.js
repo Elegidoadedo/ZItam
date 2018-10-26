@@ -19,7 +19,8 @@ const appointmentSchema = new Schema({
   client: {
     type: ObjectId,
     ref: 'Client'
-  }
+  },
+  nameClient: String,
 }, {
     timestamps: {
       createdAt: "created_at",

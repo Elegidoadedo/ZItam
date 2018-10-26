@@ -11,6 +11,13 @@ Free Time-blocking for:
    <%= item.date.min%>
    <% } %>
 <%} }) %>
-<input type="submit" value="Submit hour">
+<% if(currentUser._id === idprof) { %>
+  <label for="">Name of client</label>
+  <input type="text" name="nameClient" >
+
+<% } %> 
+<input id='submit' type="submit" value="Submit hour">
 </form>
+
+<%- include('partials/notification.ejs') %>
 <%- include('partials/navbar.ejs') %>

@@ -4,9 +4,10 @@ const Client = require('../models/client')
 const Professional = require('../models/professional')
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
+const middlewares = require('../middlewares/middlewares')
 
 /* GET users listing. */
-router.get('/add-favorite', (req, res, next) => {
+router.get('/add-favorite', middlewares.requireUser, (req, res, next) => {
   res.render('addfavorite')
 });
 
@@ -17,7 +18,19 @@ router.post('/add-favorite', (req, res, next) => {
   .then(client => {
     Professional.findOne({code})
     .then(professional => {
+      if(!professional){
+        req.flash('error', 'El profesional no existe')
+        res.redirect('/clients/add-favorite')
+      }
       professionalId = professional._id
+
+      client.myProfessionals.forEach(item => {
+        if(professionalId.toString() === item._id.toString()){
+          req.flash('error', 'Ya tienes añadido este profesional')
+          res.redirect('/clients/add-favorite')
+        }
+      })
+
       client.myProfessionals.push(ObjectId(professionalId))
       client.save()
       .then(succes => {
@@ -31,7 +44,7 @@ router.post('/add-favorite', (req, res, next) => {
   .catch(next)
 })
 
-router.get('/my-favorites', (req, res, next) => {
+router.get('/my-favorites', middlewares.requireUser, (req, res, next) => {
   const id = req.session.currentUser._id;
 
   Client.findById(id)

@@ -6,19 +6,31 @@ const Professional = require('../models/professional')
 const Client = require('../models/client')
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
+const middlewares = require('../middlewares/middlewares')
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
+router.get('/', middlewares.requireUser, (req, res, next) => {
   res.send('respond with a resource');
 });
 
-router.post('/:id/:service/:employee', (req, res, next) => {
+router.post('/:id/:service/:employee', middlewares.requireUser, (req, res, next) => {
+  const currentUser = req.session.currentUser
   const ClientId = req.session.currentUser._id;
-  const {dateId} = req.body
+  const {dateId,nameClient} = req.body
   const professionalId = req.params.id
   let service = req.params.service
   const employee = req.params.employee
-  
+  let name = null
+
+  if(!dateId){
+    req.flash('error', 'Seleccione hora')
+    res.redirect(`/professionals/${professionalId}/${service}/${employee}`)
+  }
+
+  if(currentUser.role === "client"){
+    name =  ObjectId(ClientId)
+  } 
+
   Professional.findById(professionalId)
   .then(professional => {
     professional.services.forEach(item => {
@@ -38,7 +50,7 @@ router.post('/:id/:service/:employee', (req, res, next) => {
     })
     professional.save()
     .then(result => {
-      const newAppointment = new Appointment({ professional: ObjectId(professionalId), date: ObjectId(dateId), client: ObjectId(ClientId), service, employee })
+      const newAppointment = new Appointment({ professional: ObjectId(professionalId), date: ObjectId(dateId), client: name, service, employee, nameClient: nameClient })
     
       newAppointment.save()
       .then(result => {
@@ -51,4 +63,42 @@ router.post('/:id/:service/:employee', (req, res, next) => {
   .catch(next)
   
 });
-module.exports = router;
+
+router.post('/delete/:id', middlewares.requireUser, (req, res, next) => {
+
+  const appointmentId = req.params.id
+  
+  Appointment.findById(appointmentId)
+  .then(appointment => {
+    professionalId = appointment.professional.toString()
+    
+    Professional.findById(professionalId)
+    .then(professional => {
+      
+      professional.employees.forEach(item => {
+        if(item.name === appointment.employee){
+          item.timeBlock.forEach(b => {
+            const idx = b.date.toString()
+            if(idx === appointment.date.toString()){
+              b.status = "free"
+            }
+          })
+        }
+      })
+      professional.save()
+      .then(result => {
+        Appointment.findByIdAndDelete(appointmentId)
+        .then(result => {
+          res.redirect(`/profile`);
+        })
+        .catch(next)
+      })
+      .catch(next)
+    })
+    .catch(next)  
+  })
+  .catch(next)
+});
+  
+  module.exports = router;
+  

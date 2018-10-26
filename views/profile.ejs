@@ -7,12 +7,19 @@
     <% if(currentUser.role === 'client'){ %> 
     <p>Professional: <%= appointment.professional.username %> </p>
     <% } else if(currentUser.role === 'professional'){ %>
+    <% if (appointment.client) { %>
     <p>Client: <%= appointment.client.username %> </p>
+    <% } else { %>
+    <p>Client: <%= appointment.nameClient %> </p>
+    <% } %>
     <% } %> 
     <p>Servicio: <%= appointment.service.name %> => duration: <%= appointment.service.duration %>  </p>
     <p>Empleado: <%= appointment.employee %> </p>
     <p>Dia: <%= appointment.date.day%> </p>
     <p>Hora: <%= appointment.date.hour %> : <%= appointment.date.min %></p>
+    <form action="/appointments/delete/<%= appointment._id %>" method="post">
+        <input type="submit" value="delete">
+    </form>
 <% }) %>
-
+<%- include('partials/notification.ejs') %>
 <%- include('partials/navbar.ejs') %>
