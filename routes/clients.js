@@ -13,6 +13,7 @@ router.get('/add-favorite', middlewares.requireUser, (req, res, next) => {
 
 router.post('/add-favorite', (req, res, next) => {
  const id = req.session.currentUser._id; 
+ let isIncluded = false;
   const {code} = req.body
   Client.findById(id)
   .then(client => {
@@ -27,17 +28,19 @@ router.post('/add-favorite', (req, res, next) => {
       client.myProfessionals.forEach(item => {
         if(professionalId.toString() === item._id.toString()){
           req.flash('error', 'Ya tienes añadido este profesional')
+          isIncluded = true;
           return res.redirect('/clients/add-favorite')
         }
       })
-
-      client.myProfessionals.push(ObjectId(professionalId))
-      client.save()
-      .then(succes => {
-        req.flash('info', 'Añadido correctamente');
-        return res.redirect('/clients/my-favorites');
-      })
-      .catch(next)
+      if(!isIncluded) {
+        client.myProfessionals.push(ObjectId(professionalId))
+        client.save()
+        .then(succes => {
+          req.flash('info', 'Añadido correctamente');
+          return res.redirect('/clients/my-favorites');
+        })
+        .catch(next)
+      }
     })
     .catch(next)
   })
