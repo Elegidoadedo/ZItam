@@ -1,10 +1,11 @@
-<h1>Welcome <%= currentUser.username %> </h1>
-
-<% if(appointments.length >0){%> 
-
+<%- include('partials/notification.ejs') %>
+<h1 class="page-title" >Welcome <%= currentUser.username %> </h1>
+<% if(appointments.length>0){%> 
+<div class="view-navbar"
 <h3>My appointments:</h3>
 
 <% appointments.forEach(appointment => { %>
+    <section class="cards">
     <h5>Appointment :</h5>
     <% if(currentUser.role === 'client'){ %> 
     <p>Professional: <%= appointment.professional.username %> </p>
@@ -15,15 +16,17 @@
     <p>Client: <%= appointment.nameClient %> </p>
     <% } %>
     <% } %> 
-    <p>Servicio: <%= appointment.service.name %> => duration: <%= appointment.service.duration %>  </p>
-    <p>Empleado: <%= appointment.employee %> </p>
-    <p>Dia: <%= appointment.date.day%> </p>
-    <p>Hora: <%= appointment.date.hour %> : <%= appointment.date.min %></p>
+    <p>Service: <%= appointment.service.name %></p> 
+    <p>Duration: <%= appointment.service.duration %>  </p>
+    <p>Employee: <%= appointment.employee %> </p>
+    <p>Day: <%= appointment.date.day%> </p>
+    <p>Hour: <%= appointment.date.hour %> : <%= appointment.date.min %></p>
     <form action="/appointments/delete/<%= appointment._id %>" method="post">
-        <input type="submit" value="delete">
+        <button class="button-delete edit" type="submit">Delete</button>
     </form>
-<% })} else { %>
-    <h2>Not appointments</h2>
+    </section>
+<% })} else{ %>
+    <h2>There is not appointmnets yet. Make an appointment first!</h2>
 <% } %>
-<%- include('partials/notification.ejs') %>
+</div>
 <%- include('partials/navbar.ejs') %>

@@ -97,6 +97,10 @@ p {
   padding: 7% 5%;
   font-size: 1.2em;
 }
+.button-primary.small{
+  padding: 5%;
+  margin-top: 15px;
+}
 
 
 .button-delete{ 
@@ -164,7 +168,7 @@ p {
   height: 90vh;
 }
 .second-edit{
-  height: 60vh;
+  height: 70vh;
 }
 
 /* --- LOG IN CLIENT VIEW --- */
@@ -225,6 +229,21 @@ p {
 .orange{
   color:  #F6AE2D;
 }
+.services-btn{
+  background-color: #34343a;
+  padding: 16px;
+  font-size: 1.2em;
+  border: 1px solid;
+  margin: 0 5px;
+  text-transform: capitalize;
+  border-radius: 5px;
+  width: 44%;
+}
+
+.title-section{
+  padding-bottom: 20px;
+  font-size: 1.2em;
+}
 
 /* --- FAVORITE LIST --- */
 
@@ -245,4 +264,33 @@ p {
 }
 .favorites-list a{
   text-transform: capitalize;
+}
+
+/* --- TIMEBLOCK VIEW --- */
+
+.flex-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.name-timeblock{
+  display:flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin: 30px auto 120px auto;
+
+}
+
+/* --- PROFILE VIEWS ---*/
+
+.cards{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  background-color: #3E5154;
+  padding-left: 8%;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
 }

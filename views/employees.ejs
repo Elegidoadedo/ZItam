@@ -1,5 +1,6 @@
+<h2 class="title-section page-title">Please, choose an employee:</h2>
 <% professional.employees.forEach((employee)=>{ %>
-<a href="<%= service%>/<%=employee.name%>"><%= employee.name %></a>
+<a class="services-btn"href="<%= service%>/<%=employee.name%>"><%= employee.name %></a>
 <%})%>
 
 <%- include('partials/navbar.ejs') %>

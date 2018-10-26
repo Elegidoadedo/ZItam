@@ -5,10 +5,10 @@
 <p><%= professional.description %></p>
 </div>
 <h2> Want to do an appointment?
-<h2>Choose a service:</h2>
+<h2 class="title-section">Choose a service:</h2>
 
  <% professional.services.forEach( service =>{ %>
- <a href="<%= professional._id%>/<%= service.name %>"><%= service.name %></a>
+ <a class="services-btn" href="<%= professional._id%>/<%= service.name %>"><%= service.name %></a>
  <% }) %> 
 
  <%- include('partials/navbar.ejs') %>
