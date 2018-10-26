@@ -10,12 +10,12 @@
 </nav>
 <% } else if ( currentUser.role === "client"){ %>
 <nav class="navbar-client">
-  <a href="/profile">Profile </a>
-  <a href="/clients/my-favorites">My fav. Stores </a>
-  <a href="/clients/add-favorite">Add a Store </a>
-  <form action="/logout" method="post">
-    <input type="submit" value="Log out">
-  </form>
+
+  <a href="/profile"><i class="far fa-user"></i></a>
+  <a href="/clients/my-favorites"><i class="fas fa-store"></i></a>
+  <a href="/clients/add-favorite"><i class="fas fa-plus-circle"></i> </a>
+  <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+
 </nav>
 <% } %>
 </div>

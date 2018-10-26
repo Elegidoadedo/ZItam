@@ -1,9 +1,11 @@
-<form class= "primary-form center-view" action="/login" method="post">
+<h1 class="page-title">Log in</h1>
+<form class= "primary-form" action="/login" method="post">
 
 <label for="">USERNAME</label>
 <input type="text" name="username">
 <label for="">PASSWORD</label>
 <input type="password" name="password">
-<input type="submit" value="submit">
+<button class="button-primary" type="submit">Log in!</button>
 </form>
 <%- include('partials/notification.ejs') %>
+<p>You don't have an account? <a href="/signup">Register here</a> </p>

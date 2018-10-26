@@ -1,14 +1,10 @@
-<form action="/professionals/login" method="post">
-
+<h1 class="page-title">Log in</h1>
+<form class="primary-form" action="/professionals/login" method="post">
 <label for="">USERNAME</label>
 <input type="text" name="username">
 <label for="">PASSWORD</label>
 <input type="password" name="password">
-<input type="submit" value="submit">
+<button class="button-primary" type="submit">Log in!</button>
 </form>
-
-<div class="home-link-block">
-  <p>Are you new?</p>
-  <a class=" button-primary" href="/professionals/signup">SIGN UP</a>
-</div>
 <%- include('partials/notification.ejs') %>
+<p>You don't have an account? <a href="/professionals/signup">Register here</a> </p>

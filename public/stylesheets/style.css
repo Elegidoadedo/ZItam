@@ -10,10 +10,29 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: slategrey;
+  background-color: #3E517A;
 }
 
+.container{
+  margin: 0 20px;
+}
 
+.page-title{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 20vh;
+  justify-content: center;
+}
+.page-title.small{
+  height: 1vh;
+}
+
+a{
+  color: #F6AE2D;
+  text-decoration: none;
+}
 /* ---- typography ---- */
 
 body {
@@ -42,7 +61,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20% 0;
+  margin: 15% 0;
 }
 
 .logo{
@@ -51,7 +70,7 @@ p {
 }
 
 .home-logo-block img{
-  width: 50%;
+  width: 30%;
   height: auto;
 }
 
@@ -60,18 +79,24 @@ p {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 5%;
   margin-bottom: 15%;
   font-family: 'Arbutus Slab', serif;  
 }
 
+
 .button-primary{ 
   border-radius: 15px;
   text-decoration: none;
-  background-color: #9193d0;
-  color: black;
+  background-color: #F26419;
+  color: white;
   border: 2px solid white;
+  padding: 7% 5%;
+  font-size: 1.2em;
+}
+
+.home-link-block .button-primary{ 
   padding: 3% 5%;
+  font-size: 1em;
 }
 
 /* --- SIGN UP CLIENT FORM VIEW --- */
@@ -80,18 +105,26 @@ p {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  margin: 5% 10%;
+  margin: 0 10%;
   font-family: 'Arbutus Slab', serif; 
-
+  height: 70vh;
+  justify-content: center;
+}
+.primary-form.large{
+  height: 85vh;
 }
 /* --- LOG IN CLIENT VIEW --- */
-.primary-form label , input{
-  margin-bottom: 10%;
-  font-size: 1.3em;
+.primary-form label{
+  margin-bottom: 3%;
+  font-size: 1em;
 }
-.center-view{
-  margin-top: 50%;
+.primary-form input{
+  margin-bottom: 15px;
+  font-size: 1em;
+  height: 40px;
 }
+
+
 
 /* --- NAV BARS --- */
 
@@ -102,23 +135,18 @@ p {
   background-color: #34343a;
   padding: 7%;
   font-size: 0.9em; 
+  margin-left: -20px;
+  font-size: 1.4em;
 }
+
  .navbar-client a  {
   text-decoration: none;
-  color: cornflowerblue;
-  padding: 1%;
+  padding: 1% 14px;
+  font-size: 2em;
+  color: #F6AE2D;
  }
-.navbar-client form, .navbar-prof form{
- display: inline;
- color: cornflowerblue;
-}
-.navbar-client form input, .navbar-prof form input{
-  margin: 0;
-  color: cornflowerblue;
-  background-color: #34343a;
-  text-decoration: none;
-  border: none;
-}
+
+
 .navbar-prof a {
   text-decoration: none;
   color: cornflowerblue;
@@ -135,4 +163,22 @@ p {
 }
 .profprofile-info img{
   width: 60%;
+}
+
+
+/* --- FAVORITE LIST --- */
+
+.favorites-list{
+  list-style: none;
+  padding-left: 0;
+}
+.favorites-list li{
+  background-color: #34343a;
+  color: black;
+  text-align: center;
+  border-radius: 15px;
+  padding: 23px;
+  border: 1px solid #F6AE2D;
+  margin-bottom: 10px;
+  font-size: 20px;
 }
