@@ -16,18 +16,20 @@ router.get('/', middlewares.requireUser, (req, res, next) => {
 router.post('/:id/:service/:employee', middlewares.requireUser, (req, res, next) => {
   const currentUser = req.session.currentUser
   const ClientId = req.session.currentUser._id;
-  const {dateId} = req.body
+  const {dateId,nameClient} = req.body
   const professionalId = req.params.id
   let service = req.params.service
   const employee = req.params.employee
   let name = null
 
+  if(!dateId){
+    req.flash('error', 'Seleccione hora')
+    res.redirect(`/professionals/${professionalId}/${service}/${employee}`)
+  }
 
   if(currentUser.role === "client"){
-    name = ObjectId(ClientId);
-  } else {
-    
-  }
+    name =  ObjectId(ClientId)
+  } 
 
   Professional.findById(professionalId)
   .then(professional => {
@@ -48,7 +50,7 @@ router.post('/:id/:service/:employee', middlewares.requireUser, (req, res, next)
     })
     professional.save()
     .then(result => {
-      const newAppointment = new Appointment({ professional: ObjectId(professionalId), date: ObjectId(dateId), client: name, service, employee })
+      const newAppointment = new Appointment({ professional: ObjectId(professionalId), date: ObjectId(dateId), client: name, service, employee, nameClient: nameClient })
     
       newAppointment.save()
       .then(result => {
