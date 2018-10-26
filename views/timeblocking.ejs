@@ -1,23 +1,22 @@
+<%- include('partials/notification.ejs') %>
+<h2 class="title-section page-title">Free Time-blocking for <%= employee %>:</h2>
 
-
-Free Time-blocking for:
- 
-  <form action="/appointments/<%=idprof %>/<%= service %>/<%= employee %>" method="post">
+  <form class="flex-container" action="/appointments/<%=idprof %>/<%= service %>/<%= employee %>" method="post">
 <% timeblock.forEach( item =>{ %>
 <% if( item.status === "free"){ %>
-  <input type="radio" name="dateId"  value="<%= item.date._id%>"><%= item.date.hour%>: <% if(item.date.min === 0){ %>
+<p class="services-btn"> <input  type="radio" name="dateId"  value="<%= item.date._id%>"><%= item.date.hour%>: <% if(item.date.min === 0){ %>
     0<%= item.date.min %>
  <% } else{ %>
-   <%= item.date.min%>
-   <% } %>
+   <%= item.date.min%> </p>
+   <% } %> 
 <%} }) %>
 <% if(currentUser._id === idprof) { %>
+<div class="name-timeblock">
   <label for="">Name of client</label>
   <input type="text" name="nameClient" >
-
 <% } %> 
-<input id='submit' type="submit" value="Submit hour">
+<button class="button-primary small" type="submit">Make the appointment</button>
 </form>
+</div>
 
-<%- include('partials/notification.ejs') %>
 <%- include('partials/navbar.ejs') %>

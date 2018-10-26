@@ -16,7 +16,7 @@
   <h3>Active Services:</h3>
   <% currentUser.services.forEach(service => { %>
     <form class="edit-form" action="/profile/delete/services/<%= service.name %>" method="post">
-      <p><%= service.name %> -Duration: <%=service.duration  %> </p>
+      <p><%= service.name %> -  <%=service.duration  %> min </p>
       <button class="button-delete edit" type="submit">Delete</button>
     </form>
   <% }) %>
