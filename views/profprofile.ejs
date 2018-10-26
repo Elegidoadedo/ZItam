@@ -1,15 +1,17 @@
 <div class="profprofile-info">
 <h2 class="orange">   <%=professional.username%></h2>
-<img src="<%= professional.image %>" alt="foto del local">
+<div class="rounded">
+  <img src="<%= professional.image %>" alt="foto del local">
+</div>
 <p> About us:</p>
 <p><%= professional.description %></p>
 </div>
 <h2> Want to do an appointment?
 <h2 class="title-section">Choose a service:</h2>
-
+<div class="list-service">
  <% professional.services.forEach( service =>{ %>
  <a class="services-btn" href="<%= professional._id%>/<%= service.name %>"><%= service.name %></a>
  <% }) %> 
-
+</div>
  <%- include('partials/navbar.ejs') %>
 

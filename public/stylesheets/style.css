@@ -170,7 +170,7 @@ p {
   height: 90vh;
 }
 .second-edit{
-  height: 70vh;
+  height: auto;
 }
 
 /* --- LOG IN CLIENT VIEW --- */
@@ -216,6 +216,13 @@ p {
 
 
 /* --- PROFESSIONAL PROFILE LANDING --- */
+.rounded{
+  width:200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow:hidden;
+  text-align: center;
+}
 
 .profprofile-info{
   display: flex;
@@ -225,7 +232,8 @@ p {
   align-items: center;
 }
 .profprofile-info img{
-  width: 80%;
+  width: 100%;
+
 }
 
 .orange{
@@ -236,10 +244,11 @@ p {
   padding: 16px;
   font-size: 1.2em;
   border: 1px solid;
-  margin: 0 5px;
+  margin: 10px 5px;
   text-transform: capitalize;
   border-radius: 5px;
   width: 44%;
+  display: inline-block;
 }
 
 .title-section{
@@ -247,6 +256,10 @@ p {
   font-size: 1.2em;
 }
 
+.list-service{
+  
+  padding-bottom: 127px;
+}
 /* --- FAVORITE LIST --- */
 
 .favorites-list{

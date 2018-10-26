@@ -28,6 +28,7 @@
     <button class="button-add edit" type="submit">Add Service</button>
   </form>
 </div>
+<div class="third-edit"
 <h3>Active Employees:</h3>
 <% currentUser.employees.forEach(employee => { %>
   <form class="edit-form" action="/profile/delete/employees/<%= employee.name %>" method="post">
@@ -40,7 +41,7 @@
   <input type="text" name="name">
   <button class="button-add edit" type="submit">Add employee</button>
 </form>
-
+</div>
 <% } %>
 
 <%- include('partials/navbar.ejs') %>
