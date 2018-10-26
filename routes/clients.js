@@ -4,9 +4,10 @@ const Client = require('../models/client')
 const Professional = require('../models/professional')
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
+const middlewares = require('../middlewares/middlewares')
 
 /* GET users listing. */
-router.get('/add-favorite', (req, res, next) => {
+router.get('/add-favorite', middlewares.requireUser, (req, res, next) => {
   res.render('addfavorite')
 });
 
@@ -31,7 +32,7 @@ router.post('/add-favorite', (req, res, next) => {
   .catch(next)
 })
 
-router.get('/my-favorites', (req, res, next) => {
+router.get('/my-favorites', middlewares.requireUser, (req, res, next) => {
   const id = req.session.currentUser._id;
 
   Client.findById(id)

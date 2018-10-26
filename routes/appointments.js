@@ -6,13 +6,14 @@ const Professional = require('../models/professional')
 const Client = require('../models/client')
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
+const middlewares = require('../middlewares/middlewares')
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
+router.get('/', middlewares.requireUser, (req, res, next) => {
   res.send('respond with a resource');
 });
 
-router.post('/:id/:service/:employee', (req, res, next) => {
+router.post('/:id/:service/:employee', middlewares.requireUser, (req, res, next) => {
   const ClientId = req.session.currentUser._id;
   const {dateId} = req.body
   const professionalId = req.params.id

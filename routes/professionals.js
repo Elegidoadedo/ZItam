@@ -93,7 +93,7 @@ router.post('/login', middlewares.requireAnon, (req, res, next) => {
 
 // First stage in the form employee selector
 
-router.get('/:id/:service', (req, res, next) => {
+router.get('/:id/:service', middlewares.requireUser, (req, res, next) => {
   const id = req.params.id;
   const service = req.params.service;
 
@@ -107,7 +107,7 @@ router.get('/:id/:service', (req, res, next) => {
 });
 
 // Final Step in form, show timeblocking
-router.get('/:id/:service/:employee', (req, res, next) => {
+router.get('/:id/:service/:employee', middlewares.requireUser, (req, res, next) => {
   const id = req.params.id;
   const service = req.params.service;
   const employee = req.params.employee;
@@ -133,7 +133,7 @@ router.get('/:id/:service/:employee', (req, res, next) => {
 
 
 // landing professional with form
-router.get('/:id/', (req, res, next) => {
+router.get('/:id/', middlewares.requireUser, (req, res, next) => {
   const id = req.params.id;
  
   Professional.findById(id)

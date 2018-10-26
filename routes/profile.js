@@ -49,7 +49,7 @@ router.post('/edit', middlewares.requireUser , (req, res, next) => {
   .catch(next)
 })
 
-router.post('/delete/services/:service',(req, res, next) => {
+router.post('/delete/services/:service',middlewares.requireUser,(req, res, next) => {
   const service = req.params.service
   const id = req.session.currentUser._id;
 
@@ -69,7 +69,7 @@ router.post('/delete/services/:service',(req, res, next) => {
   })
   .catch(next)
 })
-router.post('/add-service',(req, res, next) => {
+router.post('/add-service',middlewares.requireUser,(req, res, next) => {
   const {name, duration}= req.body
   const id = req.session.currentUser._id;
 
@@ -89,7 +89,7 @@ router.post('/add-service',(req, res, next) => {
 })
 
 
-router.post('/delete/employees/:employee',(req, res, next) => {
+router.post('/delete/employees/:employee', middlewares.requireUser ,(req, res, next) => {
   const employee = req.params.employee
   const id = req.session.currentUser._id;
 
@@ -111,7 +111,7 @@ router.post('/delete/employees/:employee',(req, res, next) => {
 })
 
 
-router.post('/add-employee',(req, res, next) => {
+router.post('/add-employee', middlewares.requireUser ,(req, res, next) => {
   const {name}= req.body
   const id = req.session.currentUser._id;
   let timeBlock = [];
