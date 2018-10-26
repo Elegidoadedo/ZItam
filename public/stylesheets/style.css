@@ -41,14 +41,16 @@ body {
   font-size: 16px;
   line-height: 147%;
 }
-
-h1 {
-
+.alert{
+  color: white;
+  background-color: black;
+  font-size: 1.2em;
+  width: 112%;
+  margin: 0 -20px;
+  text-align: center;
+  height: 36px;
+  padding: 7px 0;
 }
-
-h2 {}
-
-h3 {}
 
 p {
   margin: 0;
